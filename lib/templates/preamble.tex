@@ -1,0 +1,87 @@
+%!TEX TS-program = xelatex
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% DOCUMENT SETUP
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[parskip=half, a4paper]{scrartcl}
+\pagestyle{empty}
+
+\usepackage[ngerman]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{ae}
+\usepackage{lmodern}
+
+\setlength{\headheight}{2.5cm}
+
+\usepackage{lastpage}
+\usepackage{tabularx}
+
+\usepackage[automark, footsepline, plainheadsepline]{scrpage2}
+  \pagestyle{scrheadings}
+  \clearscrheadings
+  \clearscrplain
+  \clearscrheadfoot
+  \ihead[{\includegraphics[height=2cm]{images/logo.png}}]{{\includegraphics[height=2cm]{images/logo.png}}}
+  \chead[~\~\ YOUR EXAM TITLE HERE]{~\\[1cm]\LARGE\bfseries\color{ci} YOUR EXAM TITLE HERE}
+  \ofoot[Seite \thepage von \pageref{LastPage}]{Seite \thepage~von \pageref{LastPage}}
+
+\usepackage{enumitem}
+  \setlist{parsep=0pt,listparindent=\parindent}
+
+\usepackage{xcolor}
+  \definecolor{ci}{cmyk}{.29,0.85,0.56,0.47}
+
+\usepackage{hyperref}
+  \def\DefaultHeightofCheckBox{1.5ex}
+  \def\DefaultWidthofCheckBox{\DefaultHeightofCheckBox}
+
+\usepackage{array}
+  \newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+  \newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+\usepackage{fontspec}
+\setmainfont[Path = fonts/,
+  UprightFont = *-Regular,
+  BoldFont = *-Bold,
+  ItalicFont = *-Italic]{Carlito}
+
+\renewcommand*{\LayoutCheckField}[2]{% label, field
+\leavevmode
+#2 #1%
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% DOCUMENT START
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+  \renewcommand*{\DefaultOptionsofText}{print,bordercolor=black}
+  \newcounter{FrageNummer}\setcounter{FrageNummer}{1}
+  \newcommand{\DieFrageNummer}{\theFrageNummer.~\addtocounter{FrageNummer}{1}}
+
+  \begin{Form}[action=mailto:your-email-here@example.com,encoding=html,method=post]
+
+  \section{Allgemeines}
+  \begin{center}
+  Dies ist der Prüfungsbogen für \\
+  {\bfseries YOUR EXAM TITLE HERE}
+  \end{center}
+
+  Bitte tragen Sie auf diesem ersten Blatt Ihren Namen und Ihre Anschrift ein.
+
+  \begin{tabularx}{\textwidth}{lX}
+      Name & \TextField[name=name, width=10cm,value={}]{}\\[1cm]
+      Arbeitgeber & \TextField[name=arbeitgeber, width=10cm,value={}]{} \\[1cm]
+  \end{tabularx}
+
+  Auf den kommenden Seiten finden Sie Aufgaben, die Ihr Wissen über YOUR EXAM TITLE HERE überprüfen. {\bfseries Beachten Sie}: Alle Multiple-Choice-Fragen haben mindestens eine richtige Antwortmöglichkeit, es können zusätzlich aber weitere Antworten richtig sein. Eine Multiple-Choice-Frage gilt nur dann als richtig beantwortet, wenn alle richtigen Antwortmöglichkeiten ausgewählt wurden.
+
+  Zum Bestehen der Prüfung sind mindestens 50\% der Fragen richtig zu beantworten.
+
+  Nach Erhalt dieses Prüfungsbogens haben Sie 8 Stunden Zeit, um die Fragen zu beantworten. Schicken Sie uns innerhalb dieser 8 Stunden den ausgefüllten Fragebogen wieder per Mail an zurück. Zu spät eintreffende Antworten können wir nicht akzeptieren.
+
+  Nach Bestehen der Prüfung erhalten Sie ...\\[2cm]
+
+  Viel Erfolg bei der Prüfung!\\[0.5cm]

@@ -1,0 +1,24 @@
+thema "Thema Nummer 1" do
+	frage "Welche der folgenden Antworten sind richtig?" do
+		richtig	"Antwort 1"
+		richtig	"Antwort 2"
+		richtig	"Antwort 3"
+		falsch	"Antwort 4"
+		falsch	"Antwort 5"
+		falsch  "Antwort 6"
+		falsch  "Antwort 7"
+		freitext "Was fällt Ihnen sonst noch ein?"
+	end
+end
+
+thema "Thema Nummer 2" do
+  frage "Welche der folgenden Antworten sind richtig?" do
+		fragebild "example/image.png"
+    richtig "Antwort 1"
+    richtig "Antwort 2"
+    richtig "Antwort 3"
+    falsch 	"Antwort 4"
+    falsch 	"Antwort 5"
+    falsch 	"Antwort 6"
+  end
+end
