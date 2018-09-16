@@ -1,14 +1,40 @@
 # latexam
 
-# Usage
+`latexam` turns questionnaires into interactive pdfs. It is an internal domain specific language written in ruby and includes scripts for creating and comparing exam questionnaires and solutions.
 
-## From the Dockerfile
+## Questionnaire catalog
+
+A `questionnaire catalog` is made up of `topics`, `questions` in those topics and `right` as well as `wrong` answers to the questions:
+
+	topic "First topic" do
+		question "First question" do
+			right "Right answer"
+			right "Another right answer"
+			wrong "Wrong answer"
+			wrong "Another wrong answer"
+		end
+
+		question "Second question" do
+			right "Right answer"
+			right "Another right answer"
+			wrong "Wrong answer"
+			wrong "Another wrong answer"
+		end
+	end
+	
+	topic "Second topic" do
+		question "...
+	
+	
+## Usage
+
+### From the Dockerfile
 
 We have provided a `Dockerfile` to build the image needed for running everything (This will build a 2.8GB image with ruby, texlive and pdftk installed).
 
 	latexam$ docker build -t latexam .
 		
-### Create only an exam sheet
+#### Create only an exam sheet
 	
 	latexam$ docker run -it --rm -v "$PWD":/data -w /data latexam ruby bin/create-exam.rb <path to catalog file> <path to output file>
 
@@ -16,11 +42,11 @@ Returns the id of the exam, needed for generating the solution:
 
 	q0a5a6a3a2a0a1a4tq0a2a4a5a0a3a1
 	
-### Create the solution for an existing exam
+#### Create the solution for an existing exam
 	
 	latexam$ docker run -it --rm -v "$PWD":/data -w /data latexam ruby bin/create-specific-exam.rb <path to catalog file> <path to output file> <exam key>
 	
-### Generate pdfs for exam or solution
+#### Generate pdfs for exam or solution
 
 	latexam$ docker run -it --rm -v "$PWD":/data -w /data latexam xelatex <path to tex file>
 	
@@ -28,16 +54,16 @@ We might have to run this more than once. Or... we use `latexmk` to make this a 
 
 	latexam$ docker run -it --rm -v "$PWD":/data -w /data latexam latexmk -xelatex <path to tex file>
 	
-### Build exam, solution and pdfs in one step
+#### Build exam, solution and pdfs in one step
 	
 	latexam$ docker run -it --rm -v "$PWD":/data -w /data latexam ruby bin/create-sheet-and-solution-for.rb [<exam suffix>]
 
-### Compare a given exam pdf with the expected solution
+#### Compare a given exam pdf with the expected solution
 
 	latexam$ docker run -it --rm -v "$PWD":/data -w /data latexam ruby bin/check-exam.rb <path to expected solution> <path to given>
 
 
-## Via existing docker images
+### Via existing docker images
 
 Latexam is a pure ruby script with no dependencies. This way it is easy to run via the `ruby:alpine` docker container (This will install a 45MB image for ruby):
 
