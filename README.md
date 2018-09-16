@@ -24,8 +24,23 @@ A `questionnaire catalog` is made up of `topics`, `questions` in those topics an
 	
 	topic "Second topic" do
 		question "...
-	
-	
+
+The catalog is a simple text file whose content is intepreted as ruby code.
+
+### Images
+
+1. A question can have an image:
+
+		question "What do you see here" do
+			questionmage "path to file"
+
+2. An answer is taken as an image if its text ends with either jpg or png:
+
+		right "path to right answer.png"
+		wrong "path to wrong answer.jpg"
+
+Note: the paths are copied to the generated `.tex` file as-is, keep that in mind for compilation later.
+
 ## Usage
 
 ### From the Dockerfile
